@@ -47,7 +47,7 @@ function requestBluetoothDevice() {
 
   return navigator.bluetooth.requestDevice({
   acceptAllDevices: true,
- // optionalServices: ['battery_service'] // Необходимо для последующего доступа к службе.
+  optionalServices: ['battery_service'] // Необходимо для последующего доступа к службе.
 //    filters: [{services: [0xFFE0]}],
   }).
       then(device => {
