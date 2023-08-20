@@ -48,8 +48,9 @@ function requestBluetoothDevice() {
   return navigator.bluetooth.requestDevice({
   acceptAllDevices: true,
  // optionalServices: ['battery_service'] // Необходимо для последующего доступа к службе.
-  optionalServices: ['00001802-0000-1000-8000-00805f9b34fb','0000180f-0000-1000-8000-00805f9b34fb' , '0000fff0-0000-1000-8000-00805f9b34fb']
+ // optionalServices: ['00001802-0000-1000-8000-00805f9b34fb','0000180f-0000-1000-8000-00805f9b34fb' , '0000fff0-0000-1000-8000-00805f9b34fb']
 //    filters: [{services: [0xFFE0]}],
+   optionalServices: ['Health Thermometer Service'] // Необходимо для последующего доступа к службе.
   }).
       then(device => {
         log('"' + device.name + '" bluetooth device selected');
