@@ -5,7 +5,7 @@ let terminalContainer = document.getElementById('terminal');
 let sendForm = document.getElementById('send-form');
 let inputField = document.getElementById('input');
 
-const serviceUuid = 0x181A;
+const serviceUuid = 0xFF02;//0x181A;
 
 // Подключение к устройству при нажатии на кнопку Connect
 connectButton.addEventListener('click', function() {
