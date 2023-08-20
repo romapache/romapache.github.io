@@ -39,7 +39,7 @@ function connect() {
   return (deviceCache ? Promise.resolve(deviceCache) :
       requestBluetoothDevice()).
       then(device => connectDeviceAndCacheCharacteristic(device)).
-      then(characteristic => startNotifications(characteristic)).
+    //  then(characteristic => startNotifications(characteristic)).
       catch(error => log(error));
 }
 
@@ -111,8 +111,21 @@ function connectDeviceAndCacheCharacteristic(device) {
         log('Characteristic found');
         characteristicCache = characteristic;
 
-        return characteristicCache;
-      });
+       // return characteristicCache;
+
+        return characteristic.readValue();
+    })
+    .then(value => {
+        log(value);
+        this.isLoader = false;
+        let decoder = new TextDecoder('utf-8');
+        log(decoder.decode(value));
+    })
+    .catch(error => {
+        this.isLoader = false;
+        this.errorMessage = error.message;
+    });
+
 }
 
 // Включение получения уведомлений об изменении характеристики
