@@ -51,12 +51,13 @@ function requestBluetoothDevice() {
   //acceptAllDevices: true,
  // optionalServices: ['battery_service'] // Необходимо для последующего доступа к службе.
  // optionalServices: ['00001802-0000-1000-8000-00805f9b34fb','0000180f-0000-1000-8000-00805f9b34fb' , '0000fff0-0000-1000-8000-00805f9b34fb']
-    filters: [{services: ['00001800-0000-1000-8000-00805f9b34fb']}],
+   
+ //filters: [{services: ['00001800-0000-1000-8000-00805f9b34fb']}],
 
-    // filters: [{
+     filters: [{
     //   //services: ['Health Thermometer Service'],
-    //   name: 'NC150 BT'
-    // },{name: 'Galaxy Buds2 (2A46) LE'}],
+       name: 'NC150 BT'
+     },{name: 'Galaxy Buds2 (2A46) LE'}],
 
    //optionalServices: ['Health Thermometer Service'] // Необходимо для последующего доступа к службе.
   // optionalServices: [0x1809] // Необходимо для последующего доступа к службе.
