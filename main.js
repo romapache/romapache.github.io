@@ -53,7 +53,8 @@ function requestBluetoothDevice() {
  // optionalServices: ['00001802-0000-1000-8000-00805f9b34fb','0000180f-0000-1000-8000-00805f9b34fb' , '0000fff0-0000-1000-8000-00805f9b34fb']
     //filters: [/*{services: [0xFFE0]}*/{}],
     filters: [{
-      services: ['Health Thermometer Service'],
+      //services: ['Health Thermometer Service'],
+      name: 'NC150 BT'
     }]
 
    //optionalServices: ['Health Thermometer Service'] // Необходимо для последующего доступа к службе.
