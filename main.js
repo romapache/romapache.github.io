@@ -116,6 +116,7 @@ function connectDeviceAndCacheCharacteristic(device) {
         return characteristic.readValue();
     })
     .then(value => {
+        log('Value found, print...');
         log(value);
         this.isLoader = false;
         let decoder = new TextDecoder('utf-8');
