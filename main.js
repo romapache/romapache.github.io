@@ -55,10 +55,11 @@ function requestBluetoothDevice() {
     filters: [{
       //services: ['Health Thermometer Service'],
       name: 'NC150 BT'
-    },{name: 'Galaxy Buds2 (2A46) LE'}]
+    },{name: 'Galaxy Buds2 (2A46) LE'}],
 
    //optionalServices: ['Health Thermometer Service'] // Необходимо для последующего доступа к службе.
   // optionalServices: [0x1809] // Необходимо для последующего доступа к службе.
+      optionalServices: ['00001800-0000-1000-8000-00805f9b34fb']
   }).
       then(device => {
         log('"' + device.name + '" bluetooth device selected');
