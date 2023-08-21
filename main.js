@@ -5,7 +5,9 @@ let terminalContainer = document.getElementById('terminal');
 let sendForm = document.getElementById('send-form');
 let inputField = document.getElementById('input');
 
-const serviceUuid = 0xFF02;//0x181A;
+const serviceUuid = '0000180f-0000-1000-8000-00805f9b34fb';//0xFF02;//0x181A;
+
+const characteristicUuid = '00002a19-0000-1000-8000-00805f9b34fb';//0xFF02;//0x181A;
 
 // Подключение к устройству при нажатии на кнопку Connect
 connectButton.addEventListener('click', function() {
@@ -61,7 +63,7 @@ function requestBluetoothDevice() {
 
    //optionalServices: ['Health Thermometer Service'] // Необходимо для последующего доступа к службе.
   // optionalServices: [0x1809] // Необходимо для последующего доступа к службе.
-      optionalServices: ['00001800-0000-1000-8000-00805f9b34fb','0000180f-0000-1000-8000-00805f9b34fb']
+      optionalServices: ['00001800-0000-1000-8000-00805f9b34fb',serviceUuid]
   }).
       then(device => {
         log('"' + device.name + '" bluetooth device selected');
@@ -98,7 +100,7 @@ function connectDeviceAndCacheCharacteristic(device) {
 
         //return server.getPrimaryService(0xFFE0);
       //  return server.getPrimaryService('00001800-0000-1000-8000-00805f9b34fb');
-        return server.getPrimaryService('0000180f-0000-1000-8000-00805f9b34fb');
+        return server.getPrimaryService(serviceUuid);
       }).
       then(service => {
         log('Service found, getting characteristic...');
@@ -106,7 +108,7 @@ function connectDeviceAndCacheCharacteristic(device) {
       //  return service.getCharacteristic(0xFFE1);
 
        // return service.getCharacteristic('00002a00-0000-1000-8000-00805f9b34fb');
-        return service.getCharacteristic('00002a19-0000-1000-8000-00805f9b34fb');
+        return service.getCharacteristic(characteristicUuid);
       }).
       then(characteristic => {
         log('Characteristic found');
