@@ -108,7 +108,7 @@ function connectDeviceAndCacheCharacteristic(device)
 
       //  log("Health Thermometer Service: " +uuidName);
 
-       // const serviceTermometer = await server.getPrimaryService('health_thermometer');
+        const serviceTermometer = await server.getPrimaryService('health_thermometer');
         //return server.getPrimaryService(0xFFE0);
       //  return server.getPrimaryService('00001800-0000-1000-8000-00805f9b34fb');
         return server.getPrimaryService(serviceUuid);
