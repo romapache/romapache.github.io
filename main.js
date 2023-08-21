@@ -61,7 +61,7 @@ function requestBluetoothDevice() {
 
    //optionalServices: ['Health Thermometer Service'] // Необходимо для последующего доступа к службе.
   // optionalServices: [0x1809] // Необходимо для последующего доступа к службе.
-      optionalServices: ['00001800-0000-1000-8000-00805f9b34fb']
+      optionalServices: ['00001800-0000-1000-8000-00805f9b34fb','0000180f-0000-1000-8000-00805f9b34fb']
   }).
       then(device => {
         log('"' + device.name + '" bluetooth device selected');
@@ -97,14 +97,16 @@ function connectDeviceAndCacheCharacteristic(device) {
         log('GATT server connected, getting service...');
 
         //return server.getPrimaryService(0xFFE0);
-        return server.getPrimaryService('00001800-0000-1000-8000-00805f9b34fb');
+      //  return server.getPrimaryService('00001800-0000-1000-8000-00805f9b34fb');
+        return server.getPrimaryService('0000180f-0000-1000-8000-00805f9b34fb');
       }).
       then(service => {
         log('Service found, getting characteristic...');
 
       //  return service.getCharacteristic(0xFFE1);
 
-        return service.getCharacteristic('00002a00-0000-1000-8000-00805f9b34fb');
+       // return service.getCharacteristic('00002a00-0000-1000-8000-00805f9b34fb');
+        return service.getCharacteristic('00002a19-0000-1000-8000-00805f9b34fb');
       }).
       then(characteristic => {
         log('Characteristic found');
