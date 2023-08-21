@@ -5,9 +5,15 @@ let terminalContainer = document.getElementById('terminal');
 let sendForm = document.getElementById('send-form');
 let inputField = document.getElementById('input');
 
-const serviceUuid = "0000180d-0000-1000-8000-00805f9b34fb";//"00002a38-0000-1000-8000-00805f9b34fb";//'0000180f-0000-1000-8000-00805f9b34fb';//0xFF02;//0x181A;
+let serviceInputField = document.getElementById('id_service');
+let characteristicInputField = document.getElementById('id_characteristic');
+let applyButton= document.getElementById('apply_button');
 
-const characteristicUuid = "00002a38-0000-1000-8000-00805f9b34fb";//'00002a19-0000-1000-8000-00805f9b34fb';//0xFF02;//0x181A;
+let serviceUuid = "0000180d-0000-1000-8000-00805f9b34fb";//"00002a38-0000-1000-8000-00805f9b34fb";//'0000180f-0000-1000-8000-00805f9b34fb';//0xFF02;//0x181A;
+
+let characteristicUuid = "00002a38-0000-1000-8000-00805f9b34fb";//'00002a19-0000-1000-8000-00805f9b34fb';//0xFF02;//0x181A;
+
+
 
 // Подключение к устройству при нажатии на кнопку Connect
 connectButton.addEventListener('click', function() {
@@ -18,6 +24,12 @@ connectButton.addEventListener('click', function() {
 disconnectButton.addEventListener('click', function() {
   disconnect();
 });
+
+applyButton.addEventListener('click', function() {
+  serviceUuid=serviceInputField.value;
+  characteristicUuid=characteristicInputField.value;
+});
+
 
 // Обработка события отправки формы
 sendForm.addEventListener('submit', function(event) {
@@ -48,7 +60,7 @@ function connect() {
 // Запрос выбора Bluetooth устройства
 function requestBluetoothDevice() {
   
-  log('Version 30');
+  log('Version 31');
 
   log('Requesting bluetooth device...');
 
