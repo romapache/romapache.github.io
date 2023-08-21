@@ -111,7 +111,9 @@ function connectDeviceAndCacheCharacteristic(device) {
         return service.getCharacteristic(characteristicUuid);
       }).
       then(characteristic => {
-        log('Characteristic found '+characteristic.uuid);
+        log('Characteristic found ! ');
+        let uuidObtained=characteristic.uuid;
+        log(uuidObtained);
         characteristicCache = characteristic;
 
        // return characteristicCache;
