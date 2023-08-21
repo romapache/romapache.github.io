@@ -38,9 +38,6 @@ let readBuffer = '';
 
 // Запустить выбор Bluetooth устройства и подключиться к выбранному
 function connect() {
-
-
-
   return (deviceCache ? Promise.resolve(deviceCache) :
       requestBluetoothDevice()).
       then(device => connectDeviceAndCacheCharacteristic(device)).
@@ -51,7 +48,7 @@ function connect() {
 // Запрос выбора Bluetooth устройства
 function requestBluetoothDevice() {
   
-  log('Version 27');
+  log('Version 28');
 
   log('Requesting bluetooth device...');
 
@@ -107,11 +104,11 @@ function connectDeviceAndCacheCharacteristic(device)
       then(server => {
         log('GATT server connected, getting service...');
 
-        let uuidName= BluetoothUUID.getService("health_thermometer");
+       // let uuidName= BluetoothUUID.getService("health_thermometer");
 
-        log("Health Thermometer Service: " +uuidName);
+      //  log("Health Thermometer Service: " +uuidName);
 
-        const serviceTermometer = await server.getPrimaryService('health_thermometer');
+       // const serviceTermometer = await server.getPrimaryService('health_thermometer');
         //return server.getPrimaryService(0xFFE0);
       //  return server.getPrimaryService('00001800-0000-1000-8000-00805f9b34fb');
         return server.getPrimaryService(serviceUuid);
