@@ -5,9 +5,9 @@ let terminalContainer = document.getElementById('terminal');
 let sendForm = document.getElementById('send-form');
 let inputField = document.getElementById('input');
 
-const serviceUuid = '0000180f-0000-1000-8000-00805f9b34fb';//0xFF02;//0x181A;
+const serviceUuid = "0000180d-0000-1000-8000-00805f9b34fb";//"00002a38-0000-1000-8000-00805f9b34fb";//'0000180f-0000-1000-8000-00805f9b34fb';//0xFF02;//0x181A;
 
-const characteristicUuid = '00002a19-0000-1000-8000-00805f9b34fb';//0xFF02;//0x181A;
+const characteristicUuid = "00002a38-0000-1000-8000-00805f9b34fb";//'00002a19-0000-1000-8000-00805f9b34fb';//0xFF02;//0x181A;
 
 // Подключение к устройству при нажатии на кнопку Connect
 connectButton.addEventListener('click', function() {
@@ -48,7 +48,7 @@ function connect() {
 // Запрос выбора Bluetooth устройства
 function requestBluetoothDevice() {
   
-  log('Version 28');
+  log('Version 30');
 
   log('Requesting bluetooth device...');
 
@@ -108,7 +108,7 @@ function connectDeviceAndCacheCharacteristic(device)
 
       //  log("Health Thermometer Service: " +uuidName);
 
-        const serviceTermometer = await server.getPrimaryService('health_thermometer');
+       // const serviceTermometer = await server.getPrimaryService('health_thermometer');
         //return server.getPrimaryService(0xFFE0);
       //  return server.getPrimaryService('00001800-0000-1000-8000-00805f9b34fb');
         return server.getPrimaryService(serviceUuid);
@@ -134,6 +134,7 @@ function connectDeviceAndCacheCharacteristic(device)
     .then(value => {
         log('Value found, print...');
         log(value);
+        log("value.byteLength: " +value.byteLength);
         this.isLoader = false;
         let decoder = new TextDecoder('utf-8');
         log(decoder.decode(value));
