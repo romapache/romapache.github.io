@@ -51,7 +51,7 @@ function connect() {
 // Запрос выбора Bluetooth устройства
 function requestBluetoothDevice() {
   
-  log('Version 26');
+  log('Version 27');
 
   log('Requesting bluetooth device...');
 
@@ -69,7 +69,7 @@ function requestBluetoothDevice() {
 
    //optionalServices: ['Health Thermometer Service'] // Необходимо для последующего доступа к службе.
   // optionalServices: [0x1809] // Необходимо для последующего доступа к службе.
-      optionalServices: ['00001800-0000-1000-8000-00805f9b34fb',serviceUuid]
+      optionalServices: ['00001800-0000-1000-8000-00805f9b34fb',serviceUuid,'health_thermometer']
   }).
       then(device => {
         log('"' + device.name + '" bluetooth device selected');
@@ -81,7 +81,8 @@ function requestBluetoothDevice() {
 }
 
 // Обработчик разъединения
-function handleDisconnection(event) {
+function handleDisconnection(event)
+{
   let device = event.target;
 
   log('"' + device.name +
@@ -93,8 +94,10 @@ function handleDisconnection(event) {
 }
 
 // Подключение к определенному устройству, получение сервиса и характеристики
-function connectDeviceAndCacheCharacteristic(device) {
-  if (device.gatt.connected && characteristicCache) {
+function connectDeviceAndCacheCharacteristic(device) 
+{
+  if (device.gatt.connected && characteristicCache) 
+  {
     return Promise.resolve(characteristicCache);
   }
 
@@ -104,7 +107,11 @@ function connectDeviceAndCacheCharacteristic(device) {
       then(server => {
         log('GATT server connected, getting service...');
 
-        log("Health Thermometer Service: " + BluetoothUUID.getService("Health Thermometer Service"));
+        let uuidName= BluetoothUUID.getService("health_thermometer");
+
+        log("Health Thermometer Service: " +uuidName);
+
+        const serviceTermometer = await server.getPrimaryService('health_thermometer');
         //return server.getPrimaryService(0xFFE0);
       //  return server.getPrimaryService('00001800-0000-1000-8000-00805f9b34fb');
         return server.getPrimaryService(serviceUuid);
