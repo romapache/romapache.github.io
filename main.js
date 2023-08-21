@@ -98,6 +98,7 @@ function connectDeviceAndCacheCharacteristic(device) {
       then(server => {
         log('GATT server connected, getting service...');
 
+        log("Health Thermometer Service: " + BluetoothUUID.getService("Health Thermometer Service"));
         //return server.getPrimaryService(0xFFE0);
       //  return server.getPrimaryService('00001800-0000-1000-8000-00805f9b34fb');
         return server.getPrimaryService(serviceUuid);
