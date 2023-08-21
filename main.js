@@ -38,6 +38,9 @@ let readBuffer = '';
 
 // Запустить выбор Bluetooth устройства и подключиться к выбранному
 function connect() {
+
+
+
   return (deviceCache ? Promise.resolve(deviceCache) :
       requestBluetoothDevice()).
       then(device => connectDeviceAndCacheCharacteristic(device)).
@@ -47,6 +50,9 @@ function connect() {
 
 // Запрос выбора Bluetooth устройства
 function requestBluetoothDevice() {
+  
+  log('Version 26');
+
   log('Requesting bluetooth device...');
 
   return navigator.bluetooth.requestDevice({
