@@ -60,7 +60,7 @@ function connect() {
 // Запрос выбора Bluetooth устройства
 function requestBluetoothDevice() {
   
-  log('Version 31');
+  log('Version 32');
 
   log('Requesting bluetooth device...');
 
@@ -147,6 +147,12 @@ function connectDeviceAndCacheCharacteristic(device)
         log('Value found, print...');
         log(value);
         log("value.byteLength: " +value.byteLength);
+    if(value.byteLength==1)
+      {
+          let valueBits = value.getUint8(0);
+          log("valueBits: " +valueBits);
+      }
+
         this.isLoader = false;
         let decoder = new TextDecoder('utf-8');
         log(decoder.decode(value));
